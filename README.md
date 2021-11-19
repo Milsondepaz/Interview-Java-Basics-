@@ -543,13 +543,7 @@ A Marker interface can be defined as the interface which has no data member and 
 | An **abstract class** can extend another Java class and implement multiple Java interfaces. | An **interface** can extend another Java interface only. |
 | An **abstract class** can be extended using keyword **extends** | An **interface class** can be implemented using keyword **implements** |
 | A Java **abstract class** can have class members like private, protected, etc. | Members of a Java interface are public by default. |
-| **Example:**
-```public abstract class Shape{
-public abstract void draw();
-}``` | **Example:**
-```public interface Drawable{
-void draw();
-}``` |
+| **Example:** ```public abstract class Shape{ public abstract void draw(); }``` | **Example:** ```public interface Drawable{ void draw(); }``` |
 
 
 
