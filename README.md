@@ -593,16 +593,16 @@ There are mainly two types of exceptions: checked and unchecked. Here, an error 
 
 - **Error:** Error cause the program to exit since they are not recoverable. For Example, OutOfMemoryError, AssertionError, etc.
 
+## 105- What is Exception Handling?
+Exception Handling is a mechanism that is used to handle runtime errors. It is used primarily to handle checked exceptions. Exception handling maintains the normal flow of the program. There are mainly two types of exceptions: checked and unchecked. Here, the error is considered as the unchecked exception.
 
+## 106- Explain the hierarchy of Java Exception classes?
+The java.lang.Throwable class is the root class of Java Exception hierarchy which is inherited by two subclasses: Exception and Error. A hierarchy of Java Exception classes are given below:
+![image](https://user-images.githubusercontent.com/16039211/142698075-deb5bdf6-a810-40bf-8a46-6d80b639cc6f.png)
 
+## 107- What is the difference between Checked Exception and Unchecked Exception?
+**1) Checked Exception**
+The classes that extend Throwable class except RuntimeException and Error are known as checked exceptions, e.g., IOException, SQLException, etc. Checked exceptions are checked at compile-time.
 
-
-
-
-
-
-
-
-
-
-
+**2) Unchecked Exception**
+The classes that extend RuntimeException are known as unchecked exceptions, e.g., ArithmeticException, NullPointerException, etc. Unchecked exceptions are not checked at compile-time.
