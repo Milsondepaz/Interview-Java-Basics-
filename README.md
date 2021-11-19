@@ -710,7 +710,7 @@ Output
 ```
 **Explanation:**
 
-The operator **==** also check whether the references of the two string objects are equal or not. Although both of the strings contain the same content, their references are not equal because both are created by different ways(Constructor and String literal) therefore, **a == b** is unequal. On the other hand, the equal() method always check for the content. Since their content is equal hence, **a equals b** is printed.
+The operator == also check whether the references of the two string objects are equal or not. Although both of the strings contain the same content, their references are not equal because both are created by different ways(Constructor and String literal) therefore, **a == b** is unequal. On the other hand, the equal() method always check for the content. Since their content is equal hence, **a equals b** is printed.
 
 ## 123- What is the output of the following Java program?
 ```
@@ -731,7 +731,76 @@ Output
 ```
 **Explanation:**
 
-The intern method returns the String object reference from the string pool. In this case, s1 is created by using string literal whereas, s2 is created by using the String pool. However, s2 is changed to the reference of s1, and the operator **==** returns true.
+The intern method returns the String object reference from the string pool. In this case, s1 is created by using string literal whereas, s2 is created by using the String pool. However, s2 is changed to the reference of s1, and the operator == returns true.
 
+## 124- What are the differences between String and StringBuffer?
+The differences between the String and StringBuffer is given in the table below.
+| String | StringBuffer |
+| ----------- | ----------- |
+| The String class is immutable. | The StringBuffer class is mutable. |
+| The String is slow and consumes more memory when you concat too many strings because every time it creates a new instance.	 | The StringBuffer is fast and consumes less memory when you cancat strings.
+ |
+| The String class overrides the equals() method of Object class. So you can compare the contents of two strings by equals() method.	 | The StringBuffer class doesn't override the equals() method of Object class.
+ |
+
+## 125- What are the differences between StringBuffer and StringBuilder?
+The differences between the StringBuffer and StringBuilder is given below.
+| StringBuffer | StringBuilder |
+| ----------- | ----------- |
+| StringBuffer is synchronized, i.e., thread safe. It means two threads can't call the methods of StringBuffer simultaneously. | StringBuilder is non-synchronized,i.e., not thread safe. It means two threads can call the methods of StringBuilder simultaneously.
+ |
+| StringBuffer is less efficient than StringBuilder. | StringBuilder is more efficient than StringBuffer.
+ |
+
+## 126- How can we create an immutable class in Java?
+We can create an immutable class by defining a final class having all of its members as final. Consider the following example.
+
+```
+public final class Employee{  
+
+final String pancardNumber;  
+  
+public Employee(String pancardNumber){  
+this.pancardNumber=pancardNumber;  
+}  
+  
+public String getPancardNumber(){  
+return pancardNumber;  
+}  
+  
+} 
+```
+## 127- What is the purpose of toString() method in Java?
+The toString() method returns the string representation of an object. If you print any object, java compiler internally invokes the toString() method on the object. So overriding the toString() method, returns the desired output, it can be the state of an object, etc. depending upon your implementation. By overriding the toString() method of the Object class, we can return the values of the object, so we don't need to write much code. Consider the following example.
+
+```
+class Student{  
+ int rollno;  
+ String name;  
+ String city;  
+  
+ Student(int rollno, String name, String city){  
+ this.rollno=rollno;  
+ this.name=name;  
+ this.city=city;  
+ }  
+   
+ public String toString(){//overriding the toString() method  
+  return rollno+" "+name+" "+city;  
+ }  
+ public static void main(String args[]){  
+   Student s1=new Student(101,"Raj","lucknow");  
+   Student s2=new Student(102,"Vijay","ghaziabad");  
+     
+   System.out.println(s1);//compiler writes here s1.toString()  
+   System.out.println(s2);//compiler writes here s2.toString()  
+ }  
+}   
+```
+**Output:**
+```
+101 Raj lucknow
+102 Vijay ghaziabad
+```
 
 
