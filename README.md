@@ -411,3 +411,14 @@ No, we cannot declare an interface as final because the interface must be implem
 
 ## 78- What is the difference between the final method and abstract method?
 The main difference between the final method and abstract method is that the abstract method cannot be final as we need to override them in the subclass to give its definition.
+
+## 79- What is the difference between compile-time polymorphism and runtime polymorphism?
+| SN | compile-time polymorphism | Runtime polymorphism |
+| ----------- | ----------- | ----------- |
+| 1 | In compile-time polymorphism, call to a method is resolved at compile-time. | In runtime polymorphism, call to an overridden method is resolved at runtime. |
+| 2 | It is also known as static binding, early binding, or overloading | It is also known as dynamic binding, late binding, overriding, or dynamic method dispatch. |
+| 3 | Overloading is a way to achieve compile-time polymorphism in which, we can define multiple methods or constructors with different signatures. | Overriding is a way to achieve runtime polymorphism in which, we can redefine some particular method or variable in the derived class. By using overriding, we can give some specific implementation to the base class properties in the derived class. |
+| 4 | It provides fast execution because the type of an object is determined at compile-time. | It provides slower execution as compare to compile-time because the type of an object is determined at run-time. |
+| 5 | Compile-time polymorphism provides less flexibility because all the things are resolved at compile-time. | Run-time polymorphism provides more flexibility because all the things are resolved at runtime. |
+
+
