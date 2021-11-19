@@ -669,7 +669,69 @@ String s=new String("Welcome");//creates two objects and one reference variable
 ```  
 In such case, JVM will create a new string object in normal (non-pool) heap memory, and the literal "Welcome" will be placed in the constant string pool. The variable s will refer to the object in a heap (non-pool).
 
+## 120- How many objects will be created in the following code?
+```
+String s1="Welcome";  
+String s2="Welcome";  
+String s3="Welcome";  
+``` 
+Only one object will be created using the above code because strings in Java are immutable.
 
+## 121- Why java uses the concept of the string literal?
+To make Java more memory efficient (because no new objects are created if it exists already in the string constant pool).
+
+## 122- How many objects will be created in the following code?
+```
+String s = new String("Welcome");
+``` 
+Two objects, one in string constant pool and other in non-pool(heap).
+
+## 12- What is the output of the following Java program?
+```
+public class Test   
+  
+  public static void main (String args[])  
+  {  
+      String a = new String("Sharma is a good player");  
+      String b = "Sharma is a good player";  
+      if(a == b)  
+      {  
+          System.out.println("a == b");  
+      }  
+      if(a.equals(b))  
+      {  
+          System.out.println("a equals b");  
+      }  
+  }  
+``` 
+Output
+```
+  a equals b
+```
+**Explanation:**
+
+The operator == also check whether the references of the two string objects are equal or not. Although both of the strings contain the same content, their references are not equal because both are created by different ways(Constructor and String literal) therefore, a == b is unequal. On the other hand, the equal() method always check for the content. Since their content is equal hence, a equals b is printed.
+
+## 123- What is the output of the following Java program?
+```
+  public class Test   
+{  
+    public static void main (String args[])  
+    {  
+        String s1 = "Sharma is a good player";  
+        String s2 = new String("Sharma is a good player");  
+        s2 = s2.intern();  
+        System.out.println(s1 ==s2);  
+    }  
+} 
+```
+Output
+```
+  true
+```
+**Explanation:**
+
+The intern method returns the String object reference from the string pool. In this case, s1 is created by using string literal whereas, s2 is created by using the String pool. However, s2 is changed to the reference of s1, and the operator == returns true.
 
 
 
