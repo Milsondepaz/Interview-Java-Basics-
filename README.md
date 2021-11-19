@@ -710,7 +710,7 @@ Output
 ```
 **Explanation:**
 
-The operator == also check whether the references of the two string objects are equal or not. Although both of the strings contain the same content, their references are not equal because both are created by different ways(Constructor and String literal) therefore, a == b is unequal. On the other hand, the equal() method always check for the content. Since their content is equal hence, a equals b is printed.
+The operator **==** also check whether the references of the two string objects are equal or not. Although both of the strings contain the same content, their references are not equal because both are created by different ways(Constructor and String literal) therefore, **a == b** is unequal. On the other hand, the equal() method always check for the content. Since their content is equal hence, **a equals b** is printed.
 
 ## 123- What is the output of the following Java program?
 ```
@@ -731,7 +731,7 @@ Output
 ```
 **Explanation:**
 
-The intern method returns the String object reference from the string pool. In this case, s1 is created by using string literal whereas, s2 is created by using the String pool. However, s2 is changed to the reference of s1, and the operator == returns true.
+The intern method returns the String object reference from the string pool. In this case, s1 is created by using string literal whereas, s2 is created by using the String pool. However, s2 is changed to the reference of s1, and the operator **==** returns true.
 
 
 
