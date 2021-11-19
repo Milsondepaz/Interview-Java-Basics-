@@ -494,6 +494,62 @@ class Dog extends Animal{
 }   
 ```
 
+## 83- What is the abstraction?
+Abstraction is a process of hiding the implementation details and showing only functionality to the user. It displays just the essential things to the user and hides the internal information, for example, sending SMS where you type the text and send the message. You don't know the internal processing about the message delivery. Abstraction enables you to focus on what the object does instead of how it does it. Abstraction lets you focus on what the object does instead of how it does it.
+
+In Java, there are two ways to achieve the abstraction.
+
+- Abstract Class
+- Interface
+
+## 84- What is the difference between abstraction and encapsulation?
+Abstraction hides the implementation details whereas encapsulation wraps code and data into a single unit.
+
+## 85- What is the abstract class?
+A class that is declared as abstract is known as an abstract class. It needs to be extended and its method implemented. It cannot be instantiated. It can have abstract methods, non-abstract methods, constructors, and static methods. It can also have the final methods which will force the subclass not to change the body of the method.
+
+## 86- Can there be an abstract method without an abstract class?
+No, if there is an abstract method in a class, that class must be abstract.
+
+## 87- Can you use abstract and final both with a method?
+No, because we need to override the abstract method to provide its implementation, whereas we can't override the final method.
+
+## 88- Is it possible to instantiate the abstract class?
+No, the abstract class can never be instantiated even if it contains a constructor and all of its methods are implemented.
+
+## 89- What is the interface?
+The interface is a blueprint for a class that has static constants and abstract methods. It can be used to achieve full abstraction and multiple inheritance. It is a mechanism to achieve abstraction. There can be only abstract methods in the Java interface, not method body. It is used to achieve abstraction and multiple inheritance in Java. In other words, you can say that interfaces can have abstract methods and variables. Java Interface also represents the IS-A relationship. It cannot be instantiated just like the abstract class. However, we need to implement it to define its methods. Since Java 8, we can have the default, static, and private methods in an interface.
+
+## 90- Can you declare an interface method static?
+No, because methods of an interface are abstract by default, and we can not use static and abstract together.
+
+## 91- Can the Interface be final?
+No, because an interface needs to be implemented by the other class and if it is final, it can't be implemented by any class.
+
+## 92- What is a marker interface?
+A Marker interface can be defined as the interface which has no data member and member functions. For example, Serializable, Cloneable are marker interfaces. The marker interface can be declared as follows.
+
+## 93- What are the differences between abstract class and interface?
+
+| Abstract class | Interface |
+| ----------- | ----------- |
+| An abstract class can have a method body (non-abstract methods). | The interface has only abstract methods. |
+| An abstract class can have instance variables. | An interface cannot have instance variables. |
+| An abstract class can have the constructor. | The interface cannot have the constructor. |
+| An abstract class can have static methods | The interface cannot have static methods. |
+| You can extend one abstract class. | You can implement multiple interfaces. |
+| The abstract class **can provide the implementation of the interface.** | The Interface **can't provide the implementation of the abstract class.** |
+| The **abstract keyword** is used to declare an abstract class. | The **interface keyword** is used to declare an interface. |
+| An **abstract class** can extend another Java class and implement multiple Java interfaces. | An **interface** can extend another Java interface only. |
+| An **abstract class** can be extended using keyword **extends** | An **interface class** can be implemented using keyword **implements** |
+| A Java **abstract class** can have class members like private, protected, etc. | Members of a Java interface are public by default. |
+| **Example:**
+```public abstract class Shape{
+public abstract void draw();
+}``` | **Example:**
+```public interface Drawable{
+void draw();
+}``` |
 
 
 
