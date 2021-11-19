@@ -545,5 +545,64 @@ A Marker interface can be defined as the interface which has no data member and 
 | A Java **abstract class** can have class members like private, protected, etc. | Members of a Java interface are public by default. |
 | **Example:** ```public abstract class Shape{ public abstract void draw(); }``` | **Example:** ```public interface Drawable{ void draw(); }``` |
 
+## 94- Can we define private and protected modifiers for the members in interfaces?
+No, they are implicitly public.
+
+## 95- When can an object reference be cast to an interface reference?
+An object reference can be cast to an interface reference when the object implements the referenced interface.
+
+## 96- How to make a read-only class in Java?
+A class can be made read-only by making all of the fields private. The read-only class will have only getter methods which return the private property of the class to the main method. We cannot modify this property because there is no setter method available in the class. Consider the following example.
+
+## 97- How to make a write-only class in Java?
+A class can be made write-only by making all of the fields private. The write-only class will have only setter methods which set the value passed from the main method to the private fields. We cannot read the properties of the class because there is no getter method in this class. 
+
+## 98- What are the advantages of Encapsulation in Java?
+There are the following advantages of Encapsulation in Java?
+
+- By providing only the setter or getter method, you can make the class read-only or write-only. In other words, you can skip the getter or setter methods.
+- It provides you the control over the data. Suppose you want to set the value of id which should be greater than 100 only, you can write the logic inside the setter method. You can write the logic not to store the negative numbers in the setter methods.
+- It is a way to achieve data hiding in Java because other class will not be able to access the data through the private data members.
+- The encapsulate class is easy to test. So, it is better for unit testing.
+- The standard IDE's are providing the facility to generate the getters and setters. So, it is easy and fast to create an encapsulated class in Java.
+
+## 99- What is the package?
+A package is a group of similar type of classes, interfaces, and sub-packages. It provides access protection and removes naming collision. The packages in Java can be categorized into two forms, inbuilt package, and user-defined package. There are many built-in packages such as Java, lang, awt, javax, swing, net, io, util, sql, etc. Consider the following example to create a package in Java.
+
+## 100- What are the advantages of defining packages in Java?
+By defining packages, we can avoid the name conflicts between the same class names defined in different packages. Packages also enable the developer to organize the similar classes more effectively. For example, one can clearly understand that the classes present in java.io package are used to perform io related operations.
+
+## 101- How can we access some class in another class in Java?
+There are two ways to access a class in another class.
+
+- **By using the fully qualified name:** To access a class in a different package, either we must use the fully qualified name of that class, or we must import the package containing that class.
+- **By using the relative path,** We can use the path of the class that is related to the package that contains our class. It can be the same or subpackage.
+
+## 102- Can I import same package/class twice? Will the JVM load the package twice at runtime?
+One can import the same package or the same class multiple times. Neither compiler nor JVM complains about it. However, the JVM will internally load the class only once no matter how many times you import the same class.
+
+## 103- What is the static import?
+By static import, we can access the static members of a class directly, and there is no to qualify it with the class name.
+
+## 104- How many types of exception can occur in a Java program?
+There are mainly two types of exceptions: checked and unchecked. Here, an error is considered as the unchecked exception. According to Oracle, there are three types of exceptions:
+
+- **Checked Exception:** Checked exceptions are the one which are checked at compile-time. For example, SQLException, ClassNotFoundException, etc.
+
+- **Unchecked Exception:** Unchecked exceptions are the one which are handled at runtime because they can not be checked at compile-time. For example, ArithmaticException, NullPointerException, ArrayIndexOutOfBoundsException, etc.
+
+- **Error:** Error cause the program to exit since they are not recoverable. For Example, OutOfMemoryError, AssertionError, etc.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
