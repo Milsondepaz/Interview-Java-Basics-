@@ -606,3 +606,70 @@ The classes that extend Throwable class except RuntimeException and Error are kn
 
 **2) Unchecked Exception**
 The classes that extend RuntimeException are known as unchecked exceptions, e.g., ArithmeticException, NullPointerException, etc. Unchecked exceptions are not checked at compile-time.
+
+## 108- What is the base class for Error and Exception?
+The Throwable class is the base class for Error and Exception.
+
+## 109- Is it necessary that each try block must be followed by a catch block?
+It is not necessary that each try block must be followed by a catch block. It should be followed by either a catch block OR a finally block. So whatever exceptions are likely to be thrown should be declared in the throws clause of the method.
+
+## 110- What is finally block?
+The "finally" block is used to execute the important code of the program. It is executed whether an exception is handled or not. In other words, we can say that finally block is the block which is always executed. Finally block follows try or catch block. If you don't handle the exception, before terminating the program, JVM runs finally block, (if any). The finally block is mainly used to place the cleanup code such as closing a file or closing a connection. Here, we must know that for each try block there can be zero or more catch blocks, but only one finally block. The finally block will not be executed if program exits(either by calling System.exit() or by causing a fatal error that causes the process to abort).
+![image](https://user-images.githubusercontent.com/16039211/142698541-ec547e55-8c55-4f6d-be9d-b63fcdde408d.png)
+
+## 111- Can finally block be used without a catch?
+Yes, According to the definition of finally block, it must be followed by a try or catch block, therefore, we can use try block instead of catch
+
+## 112- Is there any case when finally will not be executed?
+Finally block will not be executed if program exits(either by calling System.exit() or by causing a fatal error that causes the process to abort).
+
+## 113- What is the difference between throw and throws?
+| throw keyword | throws keyword |
+| ----------- | ----------- |
+| 1) The **throw** keyword is used to throw an exception explicitly. | The **throws** keyword is used to declare an exception. |
+| 2) The checked exceptions cannot be propagated with throw only. | The checked exception can be propagated with throws |
+| 3) The **throw** keyword is followed by an instance. | The **throws** keyword is followed by class. |
+| 4) The **throw** keyword is used within the method. | The **throws** keyword is used with the method signature. |
+| 5) You cannot throw multiple exceptions. | You can declare multiple exceptions, e.g., public void method()throws IOException, SQLException. |
+
+## 114- Can an exception be rethrown?
+Yes.
+
+## 115- Can subclass overriding method declare an exception if parent class method doesn't throw an exception?
+Yes but only unchecked exception not checked.
+
+## 116- What is exception propagation?
+An exception is first thrown from the top of the stack and if it is not caught, it drops down the call stack to the previous method, If not caught there, the exception again drops down to the previous method, and so on until they are caught or until they reach the very bottom of the call stack. This procedure is called exception propagation.
+
+## 117- What is String Pool?
+String pool is the space reserved in the heap memory that can be used to store the strings. The main advantage of using the String pool is whenever we create a string literal; the JVM checks the "string constant pool" first. If the string already exists in the pool, a reference to the pooled instance is returned. If the string doesn't exist in the pool, a new string instance is created and placed in the pool. Therefore, it saves the memory by avoiding the duplicacy.
+![image](https://user-images.githubusercontent.com/16039211/142699005-1724134f-b2bf-47da-96ed-c9a861ecb2eb.png)
+
+## 118- What is the meaning of immutable regarding String?
+The simple meaning of immutable is unmodifiable or unchangeable. In Java, String is immutable, i.e., once string object has been created, its value can't be changed. Consider the following example for better understanding.
+
+## 119- Why are the objects immutable in java?
+Because Java uses the concept of the string literal. Suppose there are five reference variables, all refer to one object "sachin". If one reference variable changes the value of the object, it will be affected by all the reference variables. That is why string objects are immutable in java.
+![image](https://user-images.githubusercontent.com/16039211/142699062-ba8e5792-db6b-4a42-9388-4a590d47c987.png)
+
+## 120- How many ways can we create the string object?
+**1) String Literal**
+Java String literal is created by using double quotes. For Example:
+```
+String s="welcome";  
+```  
+Each time you create a string literal, the JVM checks the "string constant pool" first. If the string already exists in the pool, a reference to the pooled instance is returned. If the string doesn't exist in the pool, a new string instance is created and placed in the pool. String objects are stored in a special memory area known as the **string constant pool** For example:
+```
+String s1="Welcome";  
+String s2="Welcome";//It doesn't create a new instance
+```  
+**2) By new keyword**
+```
+String s=new String("Welcome");//creates two objects and one reference variable
+```  
+In such case, JVM will create a new string object in normal (non-pool) heap memory, and the literal "Welcome" will be placed in the constant string pool. The variable s will refer to the object in a heap (non-pool).
+
+
+
+
+
