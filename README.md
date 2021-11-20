@@ -825,4 +825,144 @@ There are two types of advantages of Java inner classes.
 
 - Nested classes represent a special type of relationship that is it can access all the members (data members and methods) of the outer class including private.
 - Nested classes are used to develop a more readable and maintainable code because it logically groups classes and interfaces in one place only.
-- Code Optimization: It requires less code to write.
+- **Code Optimization:** It requires less code to write.
+
+## 133- What is a nested class?
+The nested class can be defined as the class which is defined inside another class or interface. We use the nested class to logically group classes and interfaces in one place so that it can be more readable and maintainable. A nested class can access all the data members of the outer class including private data members and methods. The syntax of the nested class is defined below
+```
+class Java_Outer_class{    
+ //code    
+ class Java_Nested_class{    
+  //code    
+ }    
+} 
+```
+There are two types of nested classes, static nested class, and non-static nested class. The non-static nested class can also be called as inner-class
+
+## 134- What are the disadvantages of using inner classes?
+There are the following main disadvantages of using inner classes.
+
+- Inner classes increase the total number of classes used by the developer and therefore increases the workload of JVM since it has to perform some routine operations for those extra classes which result in slower performance.
+- IDEs provide less support to the inner classes as compare to the top level classes and therefore it annoys the developers while working with inner classes.
+
+## 135- What are the types of inner classes (non-static nested class) used in Java?
+There are mainly three types of inner classes used in Java.
+| Type | Description |
+| ----------- | ----------- |
+| Member Inner Class | A class created within class and outside method.
+ |
+| Anonymous Inner Class | A class created for implementing an interface or extending class. Its name is decided by the java compiler.
+ |
+| Local Inner Class | A class created within the method.
+ |
+ 
+## 136- Is there any difference between nested classes and inner classes?
+Yes, inner classes are non-static nested classes. In other words, we can say that inner classes are the part of nested classes.
+
+## 137- Can we access the non-final local variable, inside the local inner class?
+No, the local variable must be constant if you want to access it in the local inner class.
+
+## 138- How many class files are created on compiling the OuterClass in the following program?
+```
+public class Person {  
+String name, age, address;  
+class Employee{  
+  float salary=10000;  
+}  
+class BusinessMen{  
+  final String gstin="£4433drt3$";   
+}  
+public static void main (String args[])  
+{  
+  Person p = new Person();  
+}  
+}  
+```
+3 class-files will be created named as Person.class, Person$BusinessMen.class, and Person$Employee.class.
+
+## 139- Can a class have an interface?
+Yes, an interface can be defined within the class. It is called a nested interface.
+
+## 140- Can an Interface have a class?
+Yes, they are static implicitly.
+
+## 141- What is Garbage Collection?
+Garbage collection is a process of reclaiming the unused runtime objects. It is performed for memory management. In other words, we can say that It is the process of removing unused objects from the memory to free up space and make this space available for Java Virtual Machine. Due to garbage collection java gives 0 as output to a variable whose value is not set, i.e., the variable has been defined but not initialized. For this purpose, we were using free() function in the C language and delete() in C++. In Java, it is performed automatically. So, java provides better memory management.
+
+## 142- What is gc()?
+The gc() method is used to invoke the garbage collector for cleanup processing. This method is found in System and Runtime classes. This function explicitly makes the Java Virtual Machine free up the space occupied by the unused objects so that it can be utilized or reused. Consider the following example for the better understanding of how the gc() method invoke the garbage collector.
+```
+public class TestGarbage1{  
+
+public void finalize(){
+    System.out.println("object is garbage collected");
+    }  
+
+public static void main(String args[]){  
+  TestGarbage1 s1=new TestGarbage1();  
+  TestGarbage1 s2=new TestGarbage1();  
+  s1=null;  
+  s2=null;  
+  System.gc();  
+ } 
+ 
+} 
+}  
+```
+**Output:**
+```
+ object is garbage collected
+ object is garbage collected  
+```
+
+## 143- How is garbage collection controlled?
+Garbage collection is managed by JVM. It is performed when there is not enough space in the memory and memory is running low. We can externally call the System.gc() for the garbage collection. However, it depends upon the JVM whether to perform it or not.
+
+## 144- How can an object be unreferenced?
+There are many ways:
+
+- By nulling the reference
+- By assigning a reference to another
+- By anonymous object etc.
+![image](https://user-images.githubusercontent.com/16039211/142706376-df05ed94-770d-44fd-b084-a8ba7c633900.png)
+
+**1) By nulling a reference:**
+```
+Employee e=new Employee();  
+e=null;  
+```
+
+**2) By assigning a reference to another:**
+```
+Employee e1=new Employee();  
+Employee e2=new Employee();  
+e1=e2;//now the first object referred by e1 is available for garbage collection  
+```
+
+**3) By anonymous object:**
+```
+new Employee();  
+```
+
+## 145- What is the purpose of the finalize() method?
+The finalize() method is invoked just before the object is garbage collected. It is used to perform cleanup processing. The Garbage collector of JVM collects only those objects that are created by new keyword. So if you have created an object without new, you can use the finalize method to perform cleanup processing (destroying remaining objects). The cleanup processing is the process to free up all the resources, network which was previously used and no longer needed. It is essential to remember that it is not a reserved keyword, finalize method is present in the object class hence it is available in every class as object class is the superclass of every class in java. Here, we must note that neither finalization nor garbage collection is guaranteed. Consider the following example.
+
+```
+public class FinalizeTest {  
+    int j=12;  
+    void add()  
+    {  
+        j=j+12;  
+        System.out.println("J="+j);  
+    }  
+    public void finalize()  
+    {  
+        System.out.println("Object is garbage collected");  
+    }  
+    public static void main(String[] args) {  
+        new FinalizeTest().add();  
+        System.gc();  
+        new FinalizeTest().add();  
+    }  
+}   
+```
