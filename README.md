@@ -924,6 +924,7 @@ There are many ways:
 - By nulling the reference
 - By assigning a reference to another
 - By anonymous object etc.
+- 
 ![image](https://user-images.githubusercontent.com/16039211/142706376-df05ed94-770d-44fd-b084-a8ba7c633900.png)
 
 **1) By nulling a reference:**
@@ -966,3 +967,17 @@ public class FinalizeTest {
     }  
 }   
 ```
+
+## 146- Can an unreferenced object be referenced again?
+Yes,
+
+## 147- What kind of thread is the Garbage collector thread?
+Daemon thread.
+
+## 148- What is the difference between final, finally and finalize?
+| final | finally | finalize |
+| ----------- | ----------- | ----------- |
+| Final is used to apply restrictions on class, method, and variable. The final class can't be inherited, final method can't be overridden, and final variable value can't be changed. | Finally is used to place important code, it will be executed whether an exception is handled or not.	 | Finalize is used to perform clean up processing just before an object is garbage collected.
+ |
+| Final is a keyword.	 | Finally is a block.	 | Finalize is a method.
+ |
