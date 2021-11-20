@@ -977,7 +977,5 @@ Daemon thread.
 ## 148- What is the difference between final, finally and finalize?
 | final | finally | finalize |
 | ----------- | ----------- | ----------- |
-| Final is used to apply restrictions on class, method, and variable. The final class can't be inherited, final method can't be overridden, and final variable value can't be changed. | Finally is used to place important code, it will be executed whether an exception is handled or not.	 | Finalize is used to perform clean up processing just before an object is garbage collected.
- |
-| Final is a keyword.	 | Finally is a block.	 | Finalize is a method.
- |
+| Final is used to apply restrictions on class, method, and variable. The final class can't be inherited, final method can't be overridden, and final variable value can't be changed. | Finally is used to place important code, it will be executed whether an exception is handled or not.	 | Finalize is used to perform clean up processing just before an object is garbage collected.|
+| Final is a keyword. | Finally is a block. | Finalize is a method. |
