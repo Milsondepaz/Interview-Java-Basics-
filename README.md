@@ -979,3 +979,488 @@ Daemon thread.
 | ----------- | ----------- | ----------- |
 | Final is used to apply restrictions on class, method, and variable. The final class can't be inherited, final method can't be overridden, and final variable value can't be changed. | Finally is used to place important code, it will be executed whether an exception is handled or not.	 | Finalize is used to perform clean up processing just before an object is garbage collected.|
 | Final is a keyword. | Finally is a block. | Finalize is a method. |
+
+## 149- What is the purpose of the Runtime class?
+Java Runtime class is used to interact with a java runtime environment. Java Runtime class provides methods to execute a process, invoke GC, get total and free memory, etc. There is only one instance of java.lang.Runtime class is available for one java application. The Runtime.getRuntime() method returns the singleton instance of Runtime class.
+
+## 150- What do you understand by an IO stream?
+The stream is a sequence of data that flows from source to destination. It is composed of bytes. In Java, three streams are created for us automatically.
+
+- System.out: standard output stream
+- System.in: standard input stream
+- System.err: standard error stream
+
+## 151- What is the difference between the Reader/Writer class hierarchy and the InputStream/OutputStream class hierarchy?
+The Reader/Writer class hierarchy is character-oriented, and the InputStream/OutputStream class hierarchy is byte-oriented. The ByteStream classes are used to perform input-output of 8-bit bytes whereas the CharacterStream classes are used to perform the input/output for the 16-bit Unicode system. There are many classes in the ByteStream class hierarchy, but the most frequently used classes are FileInputStream and FileOutputStream. The most frequently used classes CharacterStream class hierarchy is FileReader and FileWriter.
+
+## 152- What are the super most classes for all the streams?
+All the stream classes can be divided into two types of classes that are ByteStream classes and CharacterStream Classes. The ByteStream classes are further divided into InputStream classes and OutputStream classes. CharacterStream classes are also divided into Reader classes and Writer classes. The SuperMost classes for all the InputStream classes is java.io.InputStream and for all the output stream classes is java.io.OutPutStream. Similarly, for all the reader classes, the super-most class is java.io.Reader, and for all the writer classes, it is java.io.Writer.
+
+## 153- What are the FileInputStream and FileOutputStream?
+**Java FileOutputStream** is an output stream used for writing data to a file. If you have some primitive values to write into a file, use FileOutputStream class. You can write byte-oriented as well as character-oriented data through the FileOutputStream class. However, for character-oriented data, it is preferred to use FileWriter than FileOutputStream. Consider the following example of writing a byte into a file.
+```
+import java.io.FileOutputStream;   
+
+public class FileOutputStreamExample {    
+    public static void main(String args[]){      
+           try{      
+             FileOutputStream fout=new FileOutputStream("D:\\testout.txt");      
+             fout.write(65);      
+             fout.close();      
+             System.out.println("success...");      
+            }catch(Exception e){System.out.println(e);}      
+      }      
+}    
+```
+
+**Java FileInputStream** class obtains input bytes from a file. It is used for reading byte-oriented data (streams of raw bytes) such as image data, audio, video, etc. You can also read character-stream data. However, for reading streams of characters, it is recommended to use FileReader class. Consider the following example for reading bytes from a file.
+
+```
+import java.io.FileInputStream;    
+public class DataStreamExample {    
+     public static void main(String args[]){      
+          try{      
+            FileInputStream fin=new FileInputStream("D:\\testout.txt");      
+            int i=fin.read();    
+            System.out.print((char)i);      
+    
+            fin.close();      
+          }catch(Exception e){System.out.println(e);}      
+         }      
+        }    
+```
+
+## 154- What is the purpose of using BufferedInputStream and BufferedOutputStream classes?
+Java BufferedOutputStream class is used for buffering an output stream. It internally uses a buffer to store data. It adds more efficiency than to write data directly into a stream. So, it makes the performance fast. Whereas, Java BufferedInputStream class is used to read information from the stream. It internally uses the buffer mechanism to make the performance fast.
+
+## 155- How to set the Permissions to a file in Java?
+In Java, FilePermission class is used to alter the permissions set on a file. Java FilePermission class contains the permission related to a directory or file. All the permissions are related to the path. The path can be of two types:
+
+- D:\\IO\\-: It indicates that the permission is associated with all subdirectories and files recursively.
+- D:\\IO\\*: It indicates that the permission is associated with all directory and files within this directory excluding subdirectories.
+
+Let's see the simple example in which permission of a directory path is granted with read permission and a file of this directory is granted for write permission.
+
+```
+package com.javatpoint;  
+import java.io.*;  
+import java.security.PermissionCollection;  
+public class FilePermissionExample{  
+     public static void main(String[] args) throws IOException {  
+      String srg = "D:\\IO Package\\java.txt";  
+      FilePermission file1 = new FilePermission("D:\\IO Package\\-", "read");  
+      PermissionCollection permission = file1.newPermissionCollection();  
+      permission.add(file1);  
+           FilePermission file2 = new FilePermission(srg, "write");  
+           permission.add(file2);  
+         if(permission.implies(new FilePermission(srg, "read,write"))) {  
+           System.out.println("Read, Write permission is granted for the path "+srg );  
+             }else {  
+            System.out.println("No Read, Write permission is granted for the path "+srg);            }  
+     }   
+}     
+```
+**Outuput**
+```
+Read, Write permission is granted for the path D:\IO Package\java.txt
+```
+
+## 156- What are FilterStreams?
+**FilterStream classes** are used to add additional functionalities to the other stream classes. FilterStream classes act like an interface which read the data from a stream, filters it, and pass the filtered data to the caller. The FilterStream classes provide extra functionalities like adding line numbers to the destination file, etc.
+
+## 157- What is an I/O filter?
+An I/O filter is an object that reads from one stream and writes to another, usually altering the data in some way as it is passed from one stream to another. Many Filter classes that allow a user to make a chain using multiple input streams. It generates a combined effect on several filters.
+
+## 158- In Java, How many ways you can take input from the console?
+In Java, there are three ways by using which, we can take input from the console.
+
+**Using BufferedReader class:** we can take input from the console by wrapping System.in into an InputStreamReader and passing it into the BufferedReader. It provides an efficient reading as the input gets buffered. Consider the following example.
+```
+import java.io.BufferedReader;   
+import java.io.IOException;   
+import java.io.InputStreamReader;   
+public class Person   
+{   
+    public static void main(String[] args) throws IOException    
+    {   
+      System.out.println("Enter the name of the person");  
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));   
+        String name = reader.readLine();   
+        System.out.println(name);           
+    }   
+}   
+```
+
+**Using Scanner class:** The Java Scanner class breaks the input into tokens using a delimiter that is whitespace by default. It provides many methods to read and parse various primitive values. Java Scanner class is widely used to parse text for string and primitive types using a regular expression. Java Scanner class extends Object class and implements Iterator and Closeable interfaces. Consider the following example.
+```
+import java.util.*;    
+public class ScannerClassExample2 {      
+      public static void main(String args[]){                         
+          String str = "Hello/This is JavaTpoint/My name is Abhishek.";    
+          //Create scanner with the specified String Object    
+          Scanner scanner = new Scanner(str);    
+          System.out.println("Boolean Result: "+scanner.hasNextBoolean());              
+          //Change the delimiter of this scanner    
+          scanner.useDelimiter("/");    
+          //Printing the tokenized Strings    
+          System.out.println("---Tokenizes String---");     
+        while(scanner.hasNext()){    
+            System.out.println(scanner.next());    
+        }    
+          //Display the new delimiter    
+          System.out.println("Delimiter used: " +scanner.delimiter());              
+          scanner.close();    
+          }      
+}  
+```
+**Using Console class:** The Java Console class is used to get input from the console. It provides methods to read texts and passwords. If you read the password using the Console class, it will not be displayed to the user. The java.io.Console class is attached to the system console internally. The Console class is introduced since 1.5. Consider the following example.
+```
+import java.io.Console;    
+class ReadStringTest{      
+public static void main(String args[]){      
+Console c=System.console();      
+System.out.println("Enter your name: ");      
+String n=c.readLine();      
+System.out.println("Welcome "+n);      
+}      
+}  
+```
+
+## 159- What is serialization?
+Serialization in Java is a mechanism of writing the state of an object into a byte stream. It is used primarily in Hibernate, RMI, JPA, EJB and JMS technologies. It is mainly used to travel object's state on the network (which is known as marshaling). Serializable interface is used to perform serialization. It is helpful when you require to save the state of a program to storage such as the file. At a later point of time, the content of this file can be restored using deserialization. It is also required to implement RMI(Remote Method Invocation). With the help of RMI, it is possible to invoke the method of a Java object on one machine to another machine.
+
+![image](https://user-images.githubusercontent.com/16039211/142707373-119a0935-daae-487a-a3f3-8dcceb09e06e.png)
+
+## 160- How can you make a class serializable in Java?
+A class can become serializable by implementing the Serializable interface.
+
+## 161- How can you avoid serialization in child class if the base class is implementing the Serializable interface?
+It is very tricky to prevent serialization of child class if the base class is intended to implement the Serializable interface. However, we cannot do it directly, but the serialization can be avoided by implementing the writeObject() or readObject() methods in the subclass and throw NotSerializableException from these methods. Consider the following example.
+```
+import java.io.FileInputStream;   
+import java.io.FileOutputStream;   
+import java.io.IOException;   
+import java.io.NotSerializableException;   
+import java.io.ObjectInputStream;   
+import java.io.ObjectOutputStream;   
+import java.io.Serializable;   
+class Person implements Serializable   
+{   
+    String name = " ";  
+    public Person(String name)    
+    {   
+        this.name = name;   
+    }         
+}   
+class Employee extends Person  
+{   
+    float salary;  
+    public Employee(String name, float salary)    
+    {   
+        super(name);   
+        this.salary = salary;   
+    }   
+    private void writeObject(ObjectOutputStream out) throws IOException   
+    {   
+        throw new NotSerializableException();   
+    }   
+    private void readObject(ObjectInputStream in) throws IOException   
+    {   
+        throw new NotSerializableException();   
+    }   
+        
+}   
+public class Test   
+{   
+    public static void main(String[] args)    
+            throws Exception    
+    {   
+        Employee emp = new Employee("Sharma", 10000);   
+            
+        System.out.println("name = " + emp.name);   
+        System.out.println("salary = " + emp.salary);   
+            
+        FileOutputStream fos = new FileOutputStream("abc.ser");   
+        ObjectOutputStream oos = new ObjectOutputStream(fos);   
+                
+        oos.writeObject(emp);   
+                
+        oos.close();   
+        fos.close();   
+                
+        System.out.println("Object has been serialized");   
+            
+        FileInputStream f = new FileInputStream("ab.txt");   
+        ObjectInputStream o = new ObjectInputStream(f);   
+                
+        Employee emp1 = (Employee)o.readObject();   
+                
+        o.close();   
+        f.close();   
+                
+        System.out.println("Object has been deserialized");   
+            
+        System.out.println("name = " + emp1.name);   
+        System.out.println("salary = " + emp1.salary);   
+    } 
+ } 
+```
+
+## 162- Can a Serialized object be transferred via network?
+Yes, we can transfer a serialized object via network because the serialized object is stored in the memory in the form of bytes and can be transmitted over the network. We can also write the serialized object to the disk or the database
+
+## 163- What is Deserialization?
+Deserialization is the process of reconstructing the object from the serialized state. It is the reverse operation of serialization. An ObjectInputStream deserializes objects and primitive data written using an ObjectOutputStream.
+```
+import java.io.*;  
+class Depersist{  
+ public static void main(String args[])throws Exception{  
+    
+  ObjectInputStream in=new ObjectInputStream(new FileInputStream("f.txt"));  
+  Student s=(Student)in.readObject();  
+  System.out.println(s.id+" "+s.name);  
+  
+  in.close();  
+ }  
+} 
+```
+**Output**
+```
+211 ravi
+```
+
+## 164- Give a brief description of Java socket programming?
+Java Socket programming is used for communication between the applications running on different JRE. Java Socket programming can be connection-oriented or connectionless. Socket and ServerSocket classes are used for connection-oriented socket programming and DatagramSocket, and DatagramPacket classes are used for connectionless socket programming. The client in socket programming must know two information:
+
+- IP address of the server
+- port number
+
+## 165- What is Socket?
+A socket is simply an endpoint for communications between the machines. It provides the connection mechanism to connect the two computers using TCP. The Socket class can be used to create a socket.
+
+## 166- What are the steps that are followed when two computers connect through TCP?
+There are the following steps that are performed when two computers connect through TCP.
+
+- The ServerSocket object is instantiated by the server which denotes the port number to which, the connection will be made.
+- After instantiating the ServerSocket object, the server invokes accept() method of ServerSocket class which makes server wait until the client attempts to connect to the server on the given port.
+- Meanwhile, the server is waiting, a socket is created by the client by instantiating Socket class. The socket class constructor accepts the server port number and server name.
+- The Socket class constructor attempts to connect with the server on the specified name. If the connection is established, the client will have a socket object that can communicate with the server.
+- The accept() method invoked by the server returns a reference to the new socket on the server that is connected with the server.
+
+## 167- Write a program in Java to establish a connection between client and server?
+Consider the following program where the connection between the client and server is established.
+
+_File: MyServer.java_
+```
+import java.io.*;  
+import java.net.*;  
+public class MyServer {  
+public static void main(String[] args){  
+    try{  
+        ServerSocket ss=new ServerSocket(6666);  
+        Socket s=ss.accept();//establishes connection   
+        DataInputStream dis=new DataInputStream(s.getInputStream());  
+        String  str=(String)dis.readUTF();  
+        System.out.println("message= "+str);  
+        ss.close();  
+            }catch(Exception e){System.out.println(e);}  
+        }  
+} 
+```
+_File: MyClient.java_
+```
+import java.io.*;  
+import java.net.*;  
+public class MyClient {  
+public static void main(String[] args) {  
+    try{    
+        Socket s=new Socket("localhost",6666);  
+        DataOutputStream dout=new DataOutputStream(s.getOutputStream());  
+        dout.writeUTF("Hello Server");  
+        dout.flush();  
+        dout.close();  
+        s.close();  
+        }catch(Exception e){
+            System.out.println(e);
+        }  
+    }  
+} 
+```
+
+## 168- How do I convert a numeric IP address like 192.18.97.39 into a hostname like java.sun.com?
+By InetAddress.getByName("192.18.97.39").getHostName() where 192.18.97.39 is the IP address. Consider the following example.
+```
+import java.io.*;    
+import java.net.*;    
+public class InetDemo{    
+public static void main(String[] args){    
+    try{    
+        InetAddress ip=InetAddress.getByName("195.201.10.8");    
+
+        System.out.println("Host Name: "+ip.getHostName());    
+        }catch(Exception e){System.out.println(e);}    
+        }    
+} 
+```
+
+## 169- What is the reflection?
+Reflection is the process of examining or modifying the runtime behavior of a class at runtime. The java.lang.Class class provides various methods that can be used to get metadata, examine and change the runtime behavior of a class. The java.lang and java.lang.reflect packages provide classes for java reflection. It is used in:
+
+- IDE (Integrated Development Environment), e.g., Eclipse, MyEclipse, NetBeans.
+- Debugger
+- Test Tools, etc.
+
+## 170- What is the purpose of using java.lang.Class class?
+The java.lang.Class class performs mainly two tasks:
+
+- Provides methods to get the metadata of a class at runtime.
+- Provides methods to examine and change the runtime behavior of a class.
+
+## 171- What are the ways to instantiate the Class class?
+There are three ways to instantiate the Class class.
+
+**forName() method of Class class:** The forName() method is used to load the class dynamically. It returns the instance of Class class. It should be used if you know the fully qualified name of the class. This cannot be used for primitive types.
+
+**getClass() method of Object class:** It returns the instance of Class class. It should be used if you know the type. Moreover, it can be used with primitives.
+
+**the .class syntax:** If a type is available, but there is no instance then it is possible to obtain a Class by appending ".class" to the name of the type. It can be used for primitive data type also.
+
+## 172- Can you access the private method from outside the class?
+Yes, by changing the runtime behavior of a class if the class is not secured.
+
+## 178- What are wrapper classes?
+Wrapper classes are classes that allow primitive types to be accessed as objects. In other words, we can say that wrapper classes are built-in java classes which allow the conversion of objects to primitives and primitives to objects. The process of converting primitives to objects is called autoboxing, and the process of converting objects to primitives is called unboxing. There are eight wrapper classes present in **java.lang** package is given below.
+
+| Primitive Type | Wrapper class | 
+| ----------- | ----------- |
+| boolean | Boolean |
+| char | Character |
+| byte | Byte |
+| short | Short |
+| int | Integer |
+| long | Long |
+| float | Float |
+| double | Double |
+
+## 179- What are autoboxing and unboxing? When does it occur?
+The autoboxing is the process of converting primitive data type to the corresponding wrapper class object, eg., int to Integer. The unboxing is the process of converting wrapper class object to primitive data type. For eg., integer to int. Unboxing and autoboxing occur automatically in Java. However, we can externally convert one into another by using the methods like valueOf() or xxxValue().
+
+It can occur whenever a wrapper class object is expected, and primitive data type is provided or vice versa.
+
+- Adding primitive types into Collection like ArrayList in Java.
+- Creating an instance of parameterized classes ,e.g., ThreadLocal which expect Type.
+- Java automatically converts primitive to object whenever one is required and another is provided in the method calling.
+- When a primitive type is assigned to an object type.
+
+## 180- What is object cloning?
+The object cloning is a way to create an exact copy of an object. The clone() method of the Object class is used to clone an object. The java.lang.Cloneable interface must be implemented by the class whose object clone we want to create. If we don't implement Cloneable interface, clone() method generates CloneNotSupportedException. The clone() method is defined in the Object class. The syntax of the clone() method is as follows:
+
+**protected Object clone() throws CloneNotSupportedException**
+
+## 181- What are the advantages and disadvantages of object cloning?
+**Advantage of Object Cloning**
+
+- You don't need to write lengthy and repetitive codes. Just use an abstract class with a 4- or 5-line long clone() method.
+- It is the easiest and most efficient way of copying objects, especially if we are applying it to an already developed or an old project. Just define a parent class, implement Cloneable in it, provide the definition of the clone() method and the task will be done.
+- Clone() is the fastest way to copy the array.
+
+**Disadvantage of Object Cloning**
+
+- To use the Object.clone() method, we have to change many syntaxes to our code, like implementing a Cloneable interface, defining the clone() method and handling CloneNotSupportedException, and finally, calling Object.clone(), etc.
+- We have to implement the Cloneable interface while it does not have any methods in it. We have to use it to tell the JVM that we can perform a clone() on our object.
+- Object.clone() is protected, so we have to provide our own clone() and indirectly call Object.clone() from it.
+- Object.clone() does not invoke any constructor, so we do not have any control over object construction.
+- If you want to write a clone method in a child class, then all of its superclasses should define the clone() method in them or inherit it from another parent class. Otherwise, the super.clone() chain will fail.
+- Object.clone() supports only shallow copying, but we will need to override it if we need deep cloning.
+
+## 182- What is a native method?
+A native method is a method that is implemented in a language other than Java. Natives methods are sometimes also referred to as foreign methods.
+
+## 183- What is the purpose of the strictfp keyword?
+Java strictfp keyword ensures that you will get the same result on every platform if you perform operations in the floating-point variable. The precision may differ from platform to platform that is why java programming language has provided the strictfp keyword so that you get the same result on every platform. So, now you have better control over the floating-point arithmetic.
+
+## 184- What is the purpose of the System class?
+The purpose of the System class is to provide access to system resources such as standard input and output. It cannot be instantiated. Facilities provided by System class are given below.
+
+- Standard input
+- Error output streams
+- Standard output
+- utility method to copy the portion of an array
+- utilities to load files and libraries
+There are the three fields of Java System class, i.e., static printstream err, static inputstream in, and standard output stream.
+
+## 185- What comes to mind when someone mentions a shallow copy in Java?
+Object cloning.
+
+## 186- What is a singleton class?
+Singleton class is the class which can not be instantiated more than once. To make a class singleton, we either make its constructor private or use the static getInstance method. Consider the following example.
+```
+class Singleton{  
+    private static Singleton single_instance = null;  
+    int i;  
+     private Singleton ()  
+     {  
+         i=90;  
+     }  
+     public static Singleton getInstance()  
+     {  
+         if(single_instance == null)  
+         {  
+             single_instance = new Singleton();  
+         }  
+         return single_instance;  
+     }  
+}  
+public class Main   
+{  
+    public static void main (String args[])  
+    {  
+        Singleton first = Singleton.getInstance();  
+        System.out.println("First instance integer value:"+first.i);  
+        first.i=first.i+90;  
+        Singleton second = Singleton.getInstance();  
+        System.out.println("Second instance integer value:"+second.i);  
+    }  
+} 
+```
+## 187- What is Locale?
+A Locale object represents a specific geographical, political, or cultural region. This object can be used to get the locale-specific information such as country name, language, variant, etc.
+
+## 188- What is a JavaBean?
+JavaBean is a reusable software component written in the Java programming language, designed to be manipulated visually by a software development environment, like JBuilder or VisualAge for Java. t. A JavaBean encapsulates many objects into one object so that we can access this object from multiple places.
+
+## 189- What is the purpose of using the Java bean?
+According to Java white paper, it is a reusable software component. A bean encapsulates many objects into one object so that we can access this object from multiple places. Moreover, it provides the easy maintenance.
+
+## 190- What is RMI?
+The RMI (Remote Method Invocation) is an API that provides a mechanism to create the distributed application in java. The RMI allows an object to invoke methods on an object running in another JVM. The RMI provides remote communication between the applications using two objects stub and skeleton.
+
+## 191- What are the steps involved to write RMI based programs?
+There are 6 steps which are performed to write RMI based programs.
+
+- Create the remote interface.
+- Provide the implementation of the remote interface.
+- Compile the implementation class and create the stub and skeleton objects using the rmic tool.
+- Start the registry service by the rmiregistry tool.
+- Create and start the remote application.
+- Create and start the client application.
+
+## 192- What is the use of HTTP-tunneling in RMI?
+HTTP tunneling can be defined as the method which doesn't need any setup to work within the firewall environment. It handles the HTTP connections through the proxy servers. However, it does not allow outbound TCP connections.
+
+## 193- What is JRMP?
+JRMP (Java Remote Method Protocol) can be defined as the Java-specific, stream-based protocol which looks up and refers to the remote objects. It requires both client and server to use Java objects. It is wire level protocol which runs under RMI and over TCP/IP.
+
+## 194- Can RMI and CORBA based applications interact?
+Yes, they can. RMI is available with IIOP as the transport protocol instead of JRMP.
+
+
+
+
+
+
+
+
+
+
+
