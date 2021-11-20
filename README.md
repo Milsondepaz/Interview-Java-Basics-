@@ -803,4 +803,26 @@ class Student{
 102 Vijay ghaziabad
 ```
 
+## 128- Why CharArray() is preferred over String to store the password?
+String stays in the string pool until the garbage is collected. If we store the password into a string, it stays in the memory for a longer period, and anyone having the memory-dump can extract the password as clear text. On the other hand, Using CharArray allows us to set it to blank whenever we are done with the password. It avoids the security threat with the string by enabling us to control the memory.
 
+## 129- Name some classes present in java.util.regex package.
+There are the following classes and interfaces present in java.util.regex package.
+
+- MatchResult Interface
+- Matcher class
+- Pattern class
+- PatternSyntaxException class
+
+## 130- How the metacharacters are different from the ordinary characters?
+Metacharacters have the special meaning to the regular expression engine. The metacharacters are ^, $, ., *, +, etc. The regular expression engine does not consider them as the regular characters. To enable the regular expression engine treating the metacharacters as ordinary characters, we need to escape the metacharacters with the backslash.
+
+## 131- Write a regular expression to validate a password. A password must start with an alphabet and followed by alphanumeric characters; Its length must be in between 8 to 20.
+The regular expression for the above criteria will be: ^[a-zA-Z][a-zA-Z0-9]{8,19} where ^ represents the start of the regex, [a-zA-Z] represents that the first character must be an alphabet, [a-zA-Z0-9] represents the alphanumeric character, {8,19} represents that the length of the password must be in between 8 and 20.
+
+## 132- What are the advantages of Java inner classes?
+There are two types of advantages of Java inner classes.
+
+- Nested classes represent a special type of relationship that is it can access all the members (data members and methods) of the outer class including private.
+- Nested classes are used to develop a more readable and maintainable code because it logically groups classes and interfaces in one place only.
+- Code Optimization: It requires less code to write.
